@@ -1,5 +1,6 @@
 # PythonSlackBot
 Slack Bot written in python 2.x
+Worldcup, world cup 2018 python bot
 
 # Steps:
 In your broswer:
