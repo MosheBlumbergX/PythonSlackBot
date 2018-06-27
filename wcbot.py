@@ -49,7 +49,7 @@ def handle_command(command, channel):
     """
     # Default response is help text for the user
     #default_response = "Not sure what you mean. Try *{}*.".format(EXAMPLE_COMMAND)
-    default_response = "accepted commands are:\nnow\ntoday (for games today)\nteam <FIFA CODE> - example: team ENG\n\nwisdom"
+    default_response = "accepted commands are:\nnow\ntoday (for games today)\nteam <FIFA CODE> - example: team ENG\nwisdom"
     
     # Finds and executes the given command, filling in response
     response = None
