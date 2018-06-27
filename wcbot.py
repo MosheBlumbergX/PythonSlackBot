@@ -99,17 +99,23 @@ def check():
         return response
 
 def current():
+    list =[]
     currenturl = 'http://worldcup.sfg.io/matches/current'
     response = requests.request("GET", currenturl)
     bb = json.loads(response.text)
-    home_teamname = (bb[0]['home_team']['country']) 
-    home_teamscore = (bb[0]['home_team']['goals'])
-    home=(home_teamname + " " + str(home_teamscore))
-    away_teammname = (bb[0]['away_team']['country']) 
-    away_teamscore = (bb[0]['away_team']['goals'])
-    away=(away_teammname + " " + str(away_teamscore))
-    time=(bb[0]['time'])
-    response = home + " " + away + ' Minute: ' + str(time)
+    l = 0
+    while l < len(bb):
+        home_teamname = (bb[l]['home_team']['country']) 
+        home_teamscore = (bb[l]['home_team']['goals'])
+        home=(home_teamname + " " + str(home_teamscore))
+        away_teammname = (bb[l]['away_team']['country']) 
+        away_teamscore = (bb[l]['away_team']['goals'])
+        away=(away_teammname + " " + str(away_teamscore))
+        time=(bb[l]['time'])
+        response = home + " " + away + ' Minute: ' + str(time)
+        list.append(response)
+        l += 1
+    response = '\n'.join(list)
     return response
 
 def gamestoday():
