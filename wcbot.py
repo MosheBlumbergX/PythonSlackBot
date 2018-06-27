@@ -49,7 +49,7 @@ def handle_command(command, channel):
     """
     # Default response is help text for the user
     #default_response = "Not sure what you mean. Try *{}*.".format(EXAMPLE_COMMAND)
-    default_response = "accepted commands are:\nnow\ntoday (for games today)\nteam <FIFA CODE> - example: team ENG\n"
+    default_response = "accepted commands are:\nnow\ntoday (for games today)\nteam <FIFA CODE> - example: team ENG\n\nwisdom"
     
     # Finds and executes the given command, filling in response
     response = None
@@ -67,6 +67,10 @@ def handle_command(command, channel):
 
     if command.startswith('team'):
         x = team(command)
+        response = x
+
+    if command.startswith('wisdom'):
+        x = random_quote()
         response = x
 
 
@@ -200,6 +204,16 @@ def team(country):
             x = ('Here is a list of countries you can use:\n Use: team <FIFA CODE> - example: team ENG\n' + str(c[0]))
             return x 
 
+def random_quote():
+    with open('quotes.json') as f:
+        lines = (l.strip() for l in f)
+        x =[json.loads(l.decode('utf-8')) for l in lines if l]
+    authors = list(set(author for _, author in x))
+    x, _ = random.choice(x)
+    author = random.choice(authors)
+    y = (x.encode('utf-8'), '-', author.encode('utf-8'))
+    response = '\n'.join(y)
+    return response
 
 
 '''
